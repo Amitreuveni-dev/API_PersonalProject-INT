@@ -1,1 +1,0 @@
-const amit = "amit"

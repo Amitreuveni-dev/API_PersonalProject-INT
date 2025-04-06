@@ -1,0 +1,89 @@
+Project Summary: Fact Sharing Website
+
+General Description: The project is a website where users can share facts with the public. Each fact submitted to the site will contain a title, description, category, an external link (required), and the username of the person who submitted the fact. Users will be able to add, comment on, and update facts.
+
+Entities (Schemas):
+
+Fact:
+
+Title (title): The name of the fact (required).
+
+Description (description): A detailed description of the fact (required).
+
+Category (category): A field indicating the category to which the fact belongs. If no category is selected, the default will be "All."
+
+Link (link): A link to an external website that proves the fact (required).
+
+Username (username): The username of the person who posted the fact.
+
+Profile Picture (profilePicture): A picture (if available) of the person who posted the fact. If no picture is available, only the username will be displayed.
+
+Category:
+
+Name (name): The name of the category (required), for example: "Animals," "Science," "History."
+
+Permissions and Usage:
+
+Unauthenticated User:
+
+Can browse the site: read and view facts that have been posted.
+
+Can click on the links attached to each fact.
+
+Cannot submit facts, cannot comment on other facts, cannot update or delete facts.
+
+Authenticated User (Logged-in):
+
+Can submit new facts to the website.
+
+Can view facts and click on links in the facts.
+
+Can comment on facts posted by others, for example: "Correct," "Incorrect."
+
+Can update facts that they themselves have posted (only facts they created). They can update the title, description, link, and category of the fact they submitted.
+
+Cannot delete facts posted by others.
+
+Cannot update facts posted by others.
+
+User Interface (UI):
+
+Home Page:
+
+Displays a list of facts available for reading.
+
+Option to search by category (e.g., Animals, Technology).
+
+Ability to view the most popular facts.
+
+Fact Page:
+
+Displays the title, description, and username of the person who posted the fact.
+
+Displays the external link if available.
+
+If the user is logged in, they can comment on the fact ("Correct," "Incorrect," or other comments).
+
+If the user is the one who posted the fact, they will have the option to update the fact (title, description, link, and category).
+
+The username of the fact poster will appear next to the fact, and if they have a profile picture, it will be displayed next to the username.
+
+Submit Fact Interface:
+
+A page where a user can add a new fact, including fields for title, description, category, and link.
+
+Displays a dropdown list of predefined categories.
+
+A link is required – if no link is provided, the fact cannot be submitted.
+
+Update Fact Interface:
+
+If the user is logged in and has created a fact, they can update the fact they posted.
+
+Only facts created by the user will be available for updating.
+
+Technical Restrictions and Explanations:
+
+Permissions: Every action, such as updating or deleting, will be checked based on the username. If a user tries to update or delete a fact they did not post, the action will not be allowed.
+
+Categories: Every fact will be submitted with a category. If no category is selected by the user, the default will be "All." Every category will be saved in a separate schema, with the name of the category.

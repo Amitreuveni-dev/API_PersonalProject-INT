@@ -8,4 +8,4 @@ const schema = new Schema({
     content: String,
 }, { timestamps: true });
 
-export const Listing = model("Post", schema);
+export const Facts = model("Post", schema);
