@@ -11,5 +11,3 @@ router.get("/facts", getFacts);
 router.put("/fact/:id", authenticate, updateFact);
 
 router.delete("/fact/:id", authenticate, deleteFact);
-
-export default router;
