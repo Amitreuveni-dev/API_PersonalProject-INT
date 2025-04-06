@@ -77,3 +77,29 @@ export const updateFact = async (req: any, res: any) => {
         res.status(500).json({ error: "Error updating fact" });
     }
 };
+
+export const deleteFact = async (req: any, res: any) => {
+    try {
+        const userId = req.signedCookies.userId;
+
+        if (!userId) {
+            return res.status(401).json({ error: "User not authenticated" });
+        }
+
+        const fact = await Fact.findById(req.params.id);
+
+        if (!fact) {
+            return res.status(404).json({ error: "Fact not found" });
+        }
+
+        if (fact.userId.toString() !== userId) {
+            return res.status(403).json({ error: "You can only delete your own facts" });
+        }
+
+        await fact.deleteOne();
+        res.status(200).json({ message: "Fact deleted" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error deleting fact" });
+    }
+};
