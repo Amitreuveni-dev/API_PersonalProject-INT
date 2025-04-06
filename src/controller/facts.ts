@@ -34,3 +34,13 @@ export const createFact = async (req: any, res: any) => {
     }
 };
 
+export const getFacts = async (res: any) => {
+    try {
+        const facts = await Fact.find();
+        res.status(200).json(facts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error fetching facts" });
+    }
+};
+
