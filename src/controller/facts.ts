@@ -44,3 +44,36 @@ export const getFacts = async (res: any) => {
     }
 };
 
+export const updateFact = async (req: any, res: any) => {
+    try {
+        const userId = req.signedCookies.userId;
+
+        if (!userId) {
+            return res.status(401).json({ error: "User not authenticated" });
+        }
+
+        const fact = await Fact.findById(req.params.id);
+
+        if (!fact) {
+            return res.status(404).json({ error: "Fact not found" });
+        }
+
+        if (fact.userId.toString() !== userId) {
+            return res.status(403).json({ error: "You can only update your own facts" });
+        }
+
+        const { title, description, link, category } = req.body;
+
+        fact.title = title || fact.title;
+        fact.description = description || fact.description;
+        fact.link = link || fact.link;
+        fact.category = category || fact.category;
+
+        await fact.save();
+
+        res.status(200).json(fact);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error updating fact" });
+    }
+};
