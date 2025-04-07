@@ -1,7 +1,6 @@
 import express from "express";
+import { router as factRouter } from "./factsRouters";
 
 export const router = express.Router();
 
-router.get("/facts", (_, res) => {
-    
-});
+router.use("facts", factRouter)

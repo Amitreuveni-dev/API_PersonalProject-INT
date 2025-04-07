@@ -1,13 +1,23 @@
 import express from "express";
-import { createFact, getFacts, updateFact, deleteFact } from "../controller/facts";
 import { authenticate } from "../middlewares/authenticate";
+import { Fact } from "../models/fact";
 
-const router = express.Router();
+export const router = express.Router();
 
-router.post("/fact", authenticate, createFact);
+router.get("/", async (req, res) => {
+    try {
+        const facts = await Fact.find();
+        res.json(facts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Oops, something went wrong while fetching facts.");
+    }
+});
 
-router.get("/facts", getFacts);
+router.get("/:id",);
 
-router.put("/fact/:id", authenticate, updateFact);
+router.put("/:id", authenticate, async (req, res) => {  
+   
+});
 
-router.delete("/fact/:id", authenticate, deleteFact);
+router.delete("/:id", authenticate,);

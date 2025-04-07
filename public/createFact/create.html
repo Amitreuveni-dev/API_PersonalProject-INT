@@ -19,23 +19,42 @@
         <h3>By adding your fact, you're making the world smarter!</h3>
     </article>
     <main>
-        <form id="factForm">
-            <label for="title">Fact Title</label>
-            <input type="text" id="title" name="title" required />
+        <form id="factForm" class="Form">
+            <div class="form-group">
+                <label for="title">Fact Title</label>
+                <input type="text" id="title" name="title" required />
+            </div>
 
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required></textarea>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
 
-            <label for="link">Fact Link</label>
-            <input type="url" id="link" name="link" required />
+            <div class="form-group">
+                <label for="link">Fact Link</label>
+                <input type="url" id="link" name="link" required />
+            </div>
 
-            <label for="category">Category</label>
-            <input type="text" id="category" name="category" required />
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="" selected disabled >Choose category:</option>
+                    <option value="all">All</option>
+                    <option value="technology">Technology</option>
+                    <option value="science">Science</option>
+                    <option value="finance">Finance</option>
+                    <option value="society">Society</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="health">Health</option>
+                    <option value="history">History</option>
+                    <option value="news">News</option>
+                </select>
+            </div>
 
             <button type="submit">Share Your Fact</button>
+
         </form>
     </main>
-
 </body>
 
 </html>
