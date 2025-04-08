@@ -35,7 +35,7 @@ app.post("/login", async (req, res) => {
     }
 
     const expires = new Date();
-    expires.setDate(expires.getDate() + 1);
+    expires.setDate(expires.getDate() + 7);
 
     res.cookie("userId", user._id.toString(), {
         expires,
@@ -44,6 +44,22 @@ app.post("/login", async (req, res) => {
     });
 
     res.status(200).send("Logged in successfully");
+});
+
+app.post("/register", async (req, res) => {
+    try {
+        const { email, password, name } = req.body;
+        const createdUser = await User.create({
+            email,
+            password,
+            name,
+        });
+
+        res.status(201).json(createdUser);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Oops, something went wrong during registration.");
+    }
 });
 
 app.use("/api", apiRouter);
