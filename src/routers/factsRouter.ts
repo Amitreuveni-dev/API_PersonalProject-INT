@@ -6,7 +6,7 @@ import { error } from "console";
 
 export const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", async (_, res) => {
     try {
         const facts = await Fact.find();
         res.json(facts);
@@ -36,6 +36,32 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+router.post("/", authenticate, async (req, res) => {
+    try {
+        const { title, description, link, category } = req.body;
+        const { userId } = req.signedCookies;
+
+        if (!title || !description || !link || !category) {
+            res.status(400).send("All fields are required");
+            return;
+        }
+
+        const newFact = new Fact({
+            title,
+            description,
+            link,
+            category,
+            user: userId,
+        });
+
+        await newFact.save();
+        res.status(201).json(newFact);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error while creating the fact");
+    }
+});
+
 router.put("/:id", authenticate, async (req, res) => {
     try {
         const { id } = req.params;
@@ -62,7 +88,7 @@ router.delete("/:id", authenticate, async (req, res) => {
 
         res.status(204);
         res.end();
-    } catch {
+    } catch (error){
         console.error(error);
         res.status(500).send("Error, Something went wrong");
     }
