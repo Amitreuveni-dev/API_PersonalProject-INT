@@ -23,6 +23,14 @@ main {
   width: min(70ch, 100% - 2rem);
   margin-inline: auto;
   gap: 1rem;
+
+  form{
+  padding: 0.2rem;
+  }
+
+  .Register{
+    margin-top: 0.2rem;
+  }
 }
 
 label {
@@ -69,23 +77,3 @@ button:hover {
   transition: 0.3;
   transform: scale(105%) rotate(1deg);
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 1rem;
-
-}
-.title-main-page {
-  margin: 0.2rem;
-  
-}
-
-.top-button{
-  justify-content: center;
-  align-items: center;
-
-}
-
-
-/*# sourceMappingURL=styles.css.map */

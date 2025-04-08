@@ -70,22 +70,39 @@ button:hover {
   transform: scale(105%) rotate(1deg);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 1rem;
 
-}
-.title-main-page {
-  margin: 0.2rem;
+.navigation-bar {
+    color: white;
+    padding: 0.6rem;
+  }
   
-}
-
-.top-button{
-  justify-content: center;
-  align-items: center;
-
-}
-
-
-/*# sourceMappingURL=styles.css.map */
+  .title {
+    text-align: center;
+    margin: 1.2rem;
+  
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+    }
+  
+    h3 {
+      font-size: 1.5rem;
+      color: #555;
+    }
+  }
+  
+  .Form {
+    background-color: #fff;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid black;
+    margin-bottom: 1rem;
+    background-color: whitesmoke;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1.2rem;
+  }
