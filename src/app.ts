@@ -55,6 +55,15 @@ app.post("/register", async (req, res) => {
             name,
         });
 
+        const expires = new Date();
+        expires.setDate(expires.getDate() + 7);
+
+        res.cookie("userId", createdUser._id, {
+            expires,
+            signed: true,
+            httpOnly: true,
+        });
+
         res.status(201).json(createdUser);
     } catch (error) {
         console.error(error);
