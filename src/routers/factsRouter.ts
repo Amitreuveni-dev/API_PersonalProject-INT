@@ -2,6 +2,7 @@ import express from "express";
 import { authenticate } from "../middlewares/authenticate";
 import { Fact } from "../models/fact";
 import { User } from "../models/user";
+import { error } from "console";
 
 export const router = express.Router();
 
@@ -54,4 +55,15 @@ router.put("/:id", authenticate, async (req, res) => {
     }
 });
 
-router.delete("/:id", authenticate,);
+router.delete("/:id", authenticate, async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Fact.findOneAndDelete({_id: id});
+
+        res.status(204);
+        res.end();
+    } catch {
+        console.error(error);
+        res.status(500).send("Error, Something went wrong");
+    }
+});
