@@ -35,29 +35,22 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put("/:id", authenticate, async (req, res): Promise<void> => {
+router.put("/:id", authenticate, async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, description, category, link } = req.body;
+        const { userId } = req.signedCookies;
+        const updatedData = req.body;
 
-        const fact = await Fact.findById(id);
-        
-        if (!fact) {
-            res.status(404).send("Fact not found");
-            return;
-        }
+        const updatedFact = await Fact.findOneAndReplace(
+            { _id: id },
+            { ...updatedData, user: userId },
+            { upsert: true }
+        );
 
-        fact.title = title || fact.title;
-        fact.description = description || fact.description;
-        fact.category = category || fact.category;
-        fact.link = link || fact.link;
-
-        await fact.save();
-
-        res.json(fact);
+        res.status(200).json(updatedFact);
     } catch (error) {
         console.error(error);
-        res.status(500).send("Oops, something went wrong while updating the fact.");
+        res.status(500).send("Something went wrong while updating the fact.");
     }
 });
 
