@@ -26,13 +26,13 @@
         <a href="createFact/create.html">
             <button>Share a Fact</button>
         </a>
-        <pre id="app"></pre>
+        <ul id="factsList"></ul>
     </main>
 
     <script type="module">
-        import { initApp } from "./index.js";
+        import { app } from "./index.js";
 
-        initApp(document.getElementById("app"));
+        app(factsList);
     </script>
 </body>
 
