@@ -2,7 +2,7 @@ import "dotenv/config";
 
 import { createServer } from "http";
 import mongoose from "mongoose";
-import { app } from "./app";
+import { app } from "./src/app";
 
 const server = createServer(app);
 const port = process.env.PORT || 8000;
