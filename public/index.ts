@@ -1,4 +1,8 @@
-export async function app(facts: HTMLUListElement) {
+export async function app() {
+    const factsList = document.getElementById("facts");
+
+    if (!factsList) return;
+
     try {
         const res = await fetch("/api/facts");
 
@@ -9,23 +13,26 @@ export async function app(facts: HTMLUListElement) {
         const facts = await res.json();
 
         if (facts.length > 0) {
-            facts.innerHTML = facts
+            factsList.innerHTML = facts
                 .map((fact: { title: string; description: string; link: string; category: string }) => {
                     return `
                         <li class="fact-item">
-                            <h3>${fact.title}</h3>
-                            <p>${fact.description}</p>
-                            <a href="${fact.link}" target="_blank">Read more</a>
-                            <p>Category: ${fact.category}</p>
+                            <h3>Title: ${fact.title}</h3>
+                            <p><strong>Description:</strong> ${fact.description}</p>
+                            <p><strong>Link:</strong> <a href="${fact.link}"target="_blank">Read more</a>
+                            </p>
+                            <p><strong>Category:</strong> ${fact.category}</p>
                         </li>
                     `;
                 })
                 .join("\n");
         } else {
-            facts.innerHTML = '<li>No facts available.</li>';
+            factsList.innerHTML = '<li>No facts available.</li>';
         }
     } catch (error) {
         console.error('Error loading facts:', error);
-        facts.innerHTML = '<li>Error loading facts.</li>';
+        factsList.innerHTML = '<li>Error loading facts.</li>';
     }
 }
+
+window.onload = app;

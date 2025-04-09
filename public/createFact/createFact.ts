@@ -10,7 +10,6 @@ document.forms.namedItem("create fact")?.addEventListener("submit", async (event
         ...factData,
         description: factData.description || undefined,
         category: factData.category || "All",
-        username: "current_user",
     };
 
     const requestBody = JSON.stringify(factDetails);
@@ -19,13 +18,26 @@ document.forms.namedItem("create fact")?.addEventListener("submit", async (event
         .querySelectorAll("input, textarea, button")
         .forEach((element) => element.setAttribute("disabled", "true"));
 
-    await fetch(`/api/facts/`, {
-        method: "POST",
-        body: requestBody,
-        headers: {
-            "content-type": "application/json"
-        },
-        credentials: "include"
-    });
-    window.location.href = "/index.html";
+    try {
+        const response = await fetch(`/api/facts/`, {
+            method: "POST",
+            body: requestBody,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        });
+
+        if (response.ok) {
+            window.location.href = "/index.html";
+        } else {
+            alert("Failed to add fact, please try again later.");
+        }
+    } catch (error) {
+        console.error("Error during fact creation:", error);
+        alert("An error occurred while creating the fact.");
+    } finally {
+        form.querySelectorAll("input, textarea, button")
+            .forEach((element) => element.removeAttribute("disabled"));
+    }
 });
