@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import { app } from "./app";
 
 const server = createServer(app);
-const port = process.env.PORT || 8050;
+const port = process.env.PORT || 10000;
 
 app.get("/", (_, res) => {
     res.send("Hello World");
