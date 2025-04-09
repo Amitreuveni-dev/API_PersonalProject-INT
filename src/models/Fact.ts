@@ -27,4 +27,4 @@ const factSchema = new Schema({
     }
 }, { timestamps: true });
 
-export const Fact = model("fact", factSchema);
+export const Fact = model("Fact", factSchema);
