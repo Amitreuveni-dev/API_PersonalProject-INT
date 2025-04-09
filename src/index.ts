@@ -5,11 +5,8 @@ import mongoose from "mongoose";
 import { app } from "./app";
 
 const server = createServer(app);
-const port = process.env.PORT || 10000;
+const port = process.env.PORT ?? 8000;
 
-app.get("/", (_, res) => {
-    res.send("Hello World");
-});
 
 async function init() {
     await mongoose.connect(process.env.CONNECTION_STRING!, {

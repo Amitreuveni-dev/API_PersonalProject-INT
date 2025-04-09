@@ -1,4 +1,4 @@
-document.forms.namedItem("create-fact-form")?.addEventListener("submit", async (event) => {
+document.forms.namedItem("create fact")?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const form = event.target as HTMLFormElement;

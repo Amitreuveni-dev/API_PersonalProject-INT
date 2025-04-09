@@ -3,7 +3,7 @@ import express from "express";
 import { json } from "body-parser";
 import cookieParser from "cookie-parser";
 import { router as apiRouter } from "./routers/api";
-import { User } from "./models/user";
+import { User } from "./models/users";
 
 export const app = express();
 
@@ -62,10 +62,10 @@ app.post("/register", async (req, res) => {
             expires,
             signed: true,
             httpOnly: true,
-            path: "/",
         });
 
-        res.status(201).json(createdUser);
+        res.status(201);
+        res.end();
     } catch (error) {
         console.error(error);
         res.status(500).send("Oops, something went wrong during registration.");

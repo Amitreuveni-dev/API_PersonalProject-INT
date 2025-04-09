@@ -1,8 +1,8 @@
 import express from "express";
 import { router as factsRouter } from "./factsRouter";
-import { router as userRouter } from "./userRouter";
+import { router as usersRouter } from "./usersRouter";
 
 export const router = express.Router();
 
 router.use("/facts", factsRouter)
-router.use("/user", userRouter);
+router.use("/user", usersRouter);

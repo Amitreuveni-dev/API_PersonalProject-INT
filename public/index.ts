@@ -1,4 +1,4 @@
-export async function app(factsList: HTMLUListElement) {
+export async function app(facts: HTMLUListElement) {
     try {
         const res = await fetch("/api/facts");
 
@@ -9,7 +9,7 @@ export async function app(factsList: HTMLUListElement) {
         const facts = await res.json();
 
         if (facts.length > 0) {
-            factsList.innerHTML = facts
+            facts.innerHTML = facts
                 .map((fact: { title: string; description: string; link: string; category: string }) => {
                     return `
                         <li class="fact-item">
@@ -22,10 +22,10 @@ export async function app(factsList: HTMLUListElement) {
                 })
                 .join("\n");
         } else {
-            factsList.innerHTML = '<li>No facts available.</li>';
+            facts.innerHTML = '<li>No facts available.</li>';
         }
     } catch (error) {
         console.error('Error loading facts:', error);
-        factsList.innerHTML = '<li>Error loading facts.</li>';
+        facts.innerHTML = '<li>Error loading facts.</li>';
     }
 }

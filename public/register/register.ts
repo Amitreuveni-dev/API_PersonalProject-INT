@@ -18,7 +18,6 @@ document.forms.namedItem("register")?.addEventListener("submit", async (e) => {
         headers: {
             "content-type": "application/json",
         },
-        credentials: "same-origin"
     });
 
     if (res.status !== 201) {
@@ -27,6 +26,6 @@ document.forms.namedItem("register")?.addEventListener("submit", async (e) => {
     }
 
     if (res.ok) {
-        window.location.replace("/");
+        window.location.replace("../index.html");
     }
 });
