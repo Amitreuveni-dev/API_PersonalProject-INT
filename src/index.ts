@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import { app } from "./app";
 
 const server = createServer(app);
-const port = process.env.PORT;
+const port = process.env.PORT || 8050;
 
 async function init() {
     await mongoose.connect(process.env.CONNECTION_STRING!, {
