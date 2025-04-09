@@ -8,8 +8,7 @@
     "dev": "npm-run-all -p dev:*",
     "dev:server": "tsx --no-check --watch src/index.ts",
     "dev:client": "tsc --watch --project tsconfig.client.json --noCheck",
-    "dev:sass": "sass --watch public",
-    "start": "tsx --no-check src/index.ts"
+    "dev:sass": "sass --watch public"
   },
   "keywords": [],
   "author": "",

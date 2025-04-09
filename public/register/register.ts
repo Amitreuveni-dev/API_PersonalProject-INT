@@ -2,12 +2,11 @@ document.forms.namedItem("register")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formElement = e.target as HTMLFormElement;
-    const formData = Object.fromEntries(new FormData(formElement));
-
+    const formData = new FormData(formElement);
     const userData = {
-        name: formData["name"],
-        email: formData["email"],
-        password: formData["password"],
+        name: formData.get("name")?.toString(),
+        email: formData.get("email")?.toString(),
+        password: formData.get("password")?.toString(),
     };
 
     console.log("Sending request to register with data:", userData);
@@ -16,12 +15,14 @@ document.forms.namedItem("register")?.addEventListener("submit", async (e) => {
         method: "POST",
         body: JSON.stringify(userData),
         headers: {
-            "content-type": "application/json",
+            "Content-Type": "application/json",
         },
     });
 
     if (res.status !== 201) {
         console.error("Something went wrong during registration");
+        const errorData = await res.json();
+        console.error("Error details:", errorData);
         return;
     }
 

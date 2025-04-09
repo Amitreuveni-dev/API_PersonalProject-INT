@@ -51,7 +51,7 @@ router.post("/", authenticate, async (req, res) => {
             description,
             link,
             category,
-            user: userId,
+            userId,
         });
 
         await newFact.save();

@@ -19,13 +19,13 @@ document.forms.namedItem("create fact")?.addEventListener("submit", async (event
         .querySelectorAll("input, textarea, button")
         .forEach((element) => element.setAttribute("disabled", "true"));
 
-    await fetch(`/api/facts/${crypto.randomUUID().replaceAll("-", "").slice(0, 24)}`, {
+    await fetch(`/api/facts/`, {
         method: "POST",
         body: requestBody,
         headers: {
             "content-type": "application/json"
-        }
+        },
+        credentials: "include"
     });
-
     window.location.href = "/index.html";
 });

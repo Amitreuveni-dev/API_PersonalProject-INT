@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 
 
 const factSchema = new Schema({
@@ -18,7 +18,7 @@ const factSchema = new Schema({
     link: {
         type: String,
         required: true,
-        match: [/^(https?:\/\/)?([\w\d\-_]+\.){1,}[\w\d\-_]+(\/[\w\d\-_]+)*\/?$/, "Please provide a valid URL"],
+        // match: [/^(https?:\/\/)?([\w\d\-_]+\.){1,}[\w\d\-_]+(\/[\w\d\-_]+)*\/?$/, "Please provide a valid URL"],
     },
     userId: {
         type: Schema.Types.ObjectId,

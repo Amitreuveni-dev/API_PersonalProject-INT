@@ -50,9 +50,9 @@ app.post("/register", async (req, res) => {
     try {
         const { email, password, name } = req.body;
         const createdUser = await User.create({
+            username: name,
             email,
             password,
-            name,
         });
 
         const expires = new Date();
@@ -68,7 +68,7 @@ app.post("/register", async (req, res) => {
         res.end();
     } catch (error) {
         console.error(error);
-        res.status(500).send("Oops, something went wrong during registration.");
+        res.status(500).json({ message: "Oops, something went wrong during registration." });
     }
 });
 
