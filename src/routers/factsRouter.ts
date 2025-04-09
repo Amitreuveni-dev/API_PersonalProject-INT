@@ -2,7 +2,6 @@ import express from "express";
 import { authenticate } from "../middlewares/authenticate";
 import { Fact } from "../models/fact";
 import { User } from "../models/users";
-import { error } from "console";
 
 export const router = express.Router();
 
